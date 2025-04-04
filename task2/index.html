@@ -3,37 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <title>task1</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        .card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+            padding: 15px;
+            text-align: center;
+        }
+        .card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .card .text {
+            margin-top: 15px;
+            font-size: 16px;
+            color: #333;
+        }
+    </style>
 </head>
 <body>
-    <div class="gallery">
-	<div class="item">
-            <h2>1. C помощью запроса GET / HTTP/1.0 получаем главную страницу</h2>
-            <img src="1.jpg" alt="Изображение 1">
+
+    <!-- Карточка 1 -->
+    <div class="card">
+        <img src="1.jpg" alt="Фото 1">
+        <div class="text">
+            <p>Получаем главную страницу методом GET в протоколе HTTP 1.0</p>
         </div>
-        <div class="item">
-            <h2>2. С помошью запроса GET /wb2/files/ HTTP/1.1 получаем код внутренней страницы </h2>
-            <img src="2.jpg" alt="Изображение 1">
+    </div>
+
+    <!-- Карточка 2 -->
+    <div class="card">
+        <img src="2.jpg" alt="Фото 2">
+        <div class="text">
+            <p> Получаем внутреннюю страницу методом GET в протоколе HTTP 1.1</p>
         </div>
-        <div class="item">
-	          <h2> 3. Получаем размер файла file.tar.gz = 11335байт с помощью HEAD запроса</h2>
-            <img src="3.jpg" alt="Изображение 2">
+    </div>
+
+    <!-- Карточка 3 -->
+    <div class="card">
+        <img src="3.jpg" alt="Фото 3">
+        <div class="text">
+            <p>Определяем размер файла file.tar.gz</p>
         </div>
-        <div class="item">
-            <h2> 4. Определяем медиатип ресурса image.png: Content-Type: image/png</h2>
-            <img src="4.jpg" alt="Изображение 3">
+    </div>
+
+       
+        <!-- Карточка 4 -->
+    <div class="card">
+        <img src="4.jpg" alt="Фото 3">
+        <div class="text">
+            <p> Определяем медиатип ресурса /image.png</p>
+
         </div>
-	      <div class="item">
-            <h2> 5. С помощью POST запроса отправляем комментарий www на сервер </h2>
-            <img src="5.jpg" alt="Изображение 4">
+    </div>
+        <!-- Карточка 5 -->
+    <div class="card">
+        <img src="5.jpg" alt="Фото 3">
+        <div class="text">
+            <p>Отправляем комментарий на сервер по адресу /index.php</p>
+
         </div>
-	      <div class="item">
-            <h2> 6. С помощью GET запроса получаем первые 100 байт file.tar.gz</h2>
-            <img src="p6.jpg" alt="Изображение 5">
+    </div>
+        <!-- Карточка 6 -->
+    <div class="card">
+        <img src="6.jpg" alt="Фото 3">
+        <div class="text">
+            <p>Получаем первые 100 байт файла /file.tar.gz</p>
+
         </div>
-	      <div class="item">
-            <h2>7. C помощью HEAD запроса определяем кодировку ресурса index.php: charset=UTF-8</h2>
-            <img src="p7.jpg" alt="Изображение 6">
+    </div>
+    
+        <!-- Карточка 7-->
+    <div class="card">
+        <img src="7.jpg" alt="Фото 3">
+        <div class="text">
+            <p>Кодировка ресурса /index.php</p>
+
         </div>
     </div>
 </body>
