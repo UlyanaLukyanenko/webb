@@ -1,64 +1,68 @@
 .error {
-    color: red;
+  color: darkred;
 }
 html {
-  overflow-x: hidden;
+overflow-x: hidden;
 }
 body {
-  margin-top: 20px;
-  font-family: sans-serif;
-  background-color: #e6e6fa;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-image: url("fon.jpg");
-  background-repeat: repeat;
-  background-size: 40%;
+margin-top: 30px;
+font-family: 'Arial', sans-serif;
+background-color: #f0f8ff;
+display: flex;
+flex-direction: column;
+align-items: center;
+background-image: url("fon.jpg");
+background-repeat: no-repeat;
+background-size: cover;
 }
 
 #hform {
-  border: 3px solid slateblue;
-  border-radius: 1%;
-  padding: 6%;
-  background-color: #ae89d3;
-  margin-top: 40px;
-  text-align: center;
+border: 4px solid darkslateblue;
+border-radius: 10px;
+padding: 5%;
+background-color: #d3c0e3;
+margin-top: 50px;
+text-align: center;
 }
 #sendbutton {
-  border: 2px solid #3f1469;
-  border-radius: 5%;
-  margin-top: 10%;
-  padding: 2%;
-  background-color: #562cad;
-  color: #c2aed7;
+border: 2px solid #5e3f74;
+border-radius: 10px;
+margin-top: 15%;
+padding: 3%;
+background-color: #6d4e76;
+color: #f0e1f5;
 }
 .h2 {
-  color: #380967;
+color: #421c66;
 }
 .button-container {
-  display: flex;
-  flex-direction: column;
-  width: 30%;
+display: flex;
+flex-direction: row;
+width: 40%;
+justify-content: space-around;
 }
 button {
-  border: 2px solid #491281;
-    border-radius: 5%;
-    background-color: #b3a0e5;
-    margin-bottom: 10px;
-    padding: 5%;
-    font-size: medium;
-    color: #0e0e2d;
+border: 2px solid #3c0e43;
+  border-radius: 10px;
+  background-color: #d7c4e3;
+  margin-bottom: 15px;
+  padding: 8%;
+  font-size: large;
+  color: #1a1a2e;
 }
 .linktomain {
-  text-decoration: none;
-  color: #581573;
-  font-size: medium;
+text-decoration: none;
+color: #6a1b9a;
+font-size: large;
 }
 #greentext {
-  text-align: center;
+text-align: center;
+color: green;
 }
 input {
-  margin-bottom: 2px;
-  margin-top: 2px;
-  border-radius: 3%;
+margin-bottom: 5px;
+margin-top: 5px;
+border-radius: 5px;
+border: 1px solid #aaa;
+padding: 5px;
 }
