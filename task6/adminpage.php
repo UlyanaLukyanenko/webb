@@ -33,44 +33,45 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
         table {
             width: 100%;
             border-collapse: collapse;
-            background-color: #c2c2e5;
+            background-color: #d0d0f0;
         }
         th, td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: left;
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: center;
         }
         a {
-            border: 2px solid #073318;
-            background-color: #64ed73;
+            border: 2px solid #0a4d2f;
+            background-color: #84f7b2;
             text-decoration: none;
-            color: #0e0e2d;
-            padding: 1px;
+            color: #1a1a3d;
+            padding: 5px;
+            border-radius: 4px;
         }
         button {
-            padding: 0;
-            border: 2px solid #51091a;
-            background-color: #eb5277;
-            padding: 1px;
+            padding: 5px;
+            border: 2px solid #8a1e2a;
+            background-color: #f5899e;
+            border-radius: 4px;
         }
         .exit {
             position: absolute;
-            top: 10px;
-            left: 10px;
-            border: 2px solid #3c2057;
-            padding: 8px;
-            border-radius: 5%;
+            top: 15px;
+            left: 15px;
+            border: 2px solid #5b4a7b;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
         }
         .langbutton {
             position: absolute;
-            top: 10px;
-            right: 10px;
-            border: 2px solid #3c2057;
-            padding: 8px;
-            background-color: #ccb4e4;
-            border-radius: 5%;
+            top: 15px;
+            right: 15px;
+            border: 2px solid #5b4a7b;
+            padding: 10px;
+            background-color: #d6c3e3;
+            border-radius: 8px;
         }
-
 
     </style>
     <script>
