@@ -1,0 +1,104 @@
+#include <iostream>
+#include <cmath>
+#include <fstream>
+// 2    1   -1  |   8 
+// -3   -1    2  | -11 
+// -2    1    2  |  -3 
+using namespace std;
+
+void matr(double** matrix, int n, double* value) {
+
+    for (int k = 0; k < n; k++) {
+        int max_row = k;
+        double max_val = fabs(matrix[k][k]);
+
+        for (int i = k + 1; i < n; i++) {
+            if (fabs(matrix[i][k]) > max_val) {
+                max_val = fabs(matrix[i][k]);
+                max_row = i;
+            }
+        }
+
+        cout << "Максимальный элемент в столбце " << k + 1 << ": " 
+             << matrix[max_row][k] << " (строка " << max_row + 1 << ")" << endl;
+
+        if (max_row != k) {
+            for (int j = k; j < n + 1; j++) {
+                swap(matrix[k][j], matrix[max_row][j]);
+            }
+        }
+        if (fabs(matrix[k][k]) < 1e-12) {
+            cout << "Система вырождена!" << endl;
+            return;
+        }
+
+        for (int i = k + 1; i < n; i++) {
+            double factor = matrix[i][k] / matrix[k][k];
+            for (int j = k; j < n + 1; j++) {
+                matrix[i][j] -= factor * matrix[k][j];
+            }
+        }
+
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            cout << matrix[i][j] << "\t";
+        }
+        cout << "| " << matrix[i][n] << endl;
+    }
+    for (int i = n - 1; i >= 0; i--) {
+        value[i] = matrix[i][n];
+        for (int j = i + 1; j < n; j++) {
+            value[i] -= matrix[i][j] * value[j];
+        }
+        value[i] /= matrix[i][i];
+    }
+}
+
+int main() {
+    setlocale(LC_ALL, "ru");
+    // Открываем файл для чтения
+    ifstream file("C:\\Users\\Professional\\source\\repos\\Числ_методы\\file1.txt");
+    if (!file.is_open()) {
+        cout << "Ошибка открытия файла file1!" << endl;
+        return 1;
+    }
+
+    int n;
+    file >> n;
+
+    double** matrix = new double* [n];
+    for (int i = 0; i < n; i++) {
+        matrix[i] = new double[n + 1];
+    }
+
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n + 1; j++) {
+            file >> matrix[i][j];
+        }
+    }
+    file.close();
+
+    // Выводим исходную матрицу
+    cout << "Размерность системы: " << n << endl;
+    cout << "Исходная матрица системы:" << endl;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            cout << matrix[i][j] << "\t";
+        }
+        cout << "| " << matrix[i][n] << endl;
+    }
+
+    double* solution = new double[n];
+    matr(matrix, n, solution);
+    for (int i = 0; i < n; i++) {
+        cout << "x[" << i + 1 << "] = " << solution[i] << endl;
+    }
+    for (int i = 0; i < n; i++) {
+        delete[] matrix[i];
+    }
+    delete[] matrix;
+    delete[] solution;
+
+    return 0;
+}
