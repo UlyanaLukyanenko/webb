@@ -1,0 +1,204 @@
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <cmath>
+#include <cstdio>
+using namespace std;
+
+// Функция для решения СЛАУ методом Гаусса
+bool slauMG(vector<vector<double> >& A, vector<double>& b, vector<double>& x) {
+    int n = A.size();
+
+    for (int i = 0; i < n; i++) {
+        int maxRow = i;
+        for (int k = i + 1; k < n; k++) {
+            if (fabs(A[k][i]) > fabs(A[maxRow][i])) {
+                maxRow = k;
+            }
+        }
+
+        if (maxRow != i) {
+            for (int j = 0; j < n; j++) {
+                double temp = A[i][j];
+                A[i][j] = A[maxRow][j];
+                A[maxRow][j] = temp;
+            }
+            double temp = b[i];
+            b[i] = b[maxRow];
+            b[maxRow] = temp;
+        }
+
+        if (fabs(A[i][i]) < 0.0000000001) {
+            cout << "Ошибка: Матрица вырождена" << endl;
+            return false;
+        }
+
+        for (int k = i + 1; k < n; k++) {
+            double factor = A[k][i] / A[i][i];
+            for (int j = i; j < n; j++) {
+                A[k][j] -= factor * A[i][j];
+            }
+            b[k] -= factor * b[i];
+        }
+    }
+
+    x.resize(n);
+    for (int i = n - 1; i >= 0; i--) {
+        x[i] = b[i];
+        for (int j = i + 1; j < n; j++) {
+            x[i] -= A[i][j] * x[j];
+        }
+        x[i] /= A[i][i];
+    }
+
+    return true;
+}
+
+// Функция для построения матрицы Вандермонда
+void buildVMatrix(const vector<double>& x, vector<vector<double> >& A) {
+    int n = x.size();
+    A.resize(n, vector<double>(n));
+
+    for (int i = 0; i < n; i++) {
+        A[i][0] = 1.0;
+        for (int j = 1; j < n; j++) {
+            A[i][j] = A[i][j - 1] * x[i];
+        }
+    }
+}
+
+// Функция для вывода многочлена
+void printpolinom (const vector<double>& coefficients) {
+    int n = coefficients.size();
+    bool first = true;
+
+    cout << "P(x) = ";
+
+    for (int i = 0; i < n; i++) {
+        if (fabs(coefficients[i]) > 0.0000000001) {
+            if (!first) {
+                if (coefficients[i] > 0) cout << " + ";
+                else cout << " - ";
+            }
+            else {
+                if (coefficients[i] < 0) cout << "-";
+                first = false;
+            }
+
+            double abs_coef = fabs(coefficients[i]);
+
+            if (i == 0) {
+                cout << abs_coef;
+            }
+            else {
+                if (fabs(abs_coef - 1.0) > 0.0000000001) {
+                    cout << abs_coef << "*";
+                }
+                cout << "x";
+                if (i > 1) {
+                    cout << "^" << i;
+                }
+            }
+        }
+    }
+    cout << endl;
+}
+
+// Функция для вычисления значения многочлена в точке
+double calculatePolynomial(const vector<double>& c, double x) {
+    double result = 0.0;
+    double power = 1.0;
+
+    for (int i = 0; i < c.size(); i++) {
+        result += c[i] * power;
+        power *= x;
+    }
+
+    return result;
+}
+
+int main() {
+    setlocale(LC_ALL, "ru");
+    vector<double> x, y;
+
+    // Чтение данных из файла
+    ifstream file("C:\\Users\\Professional\\source\\repos\\ЧМ_2\\data.txt");
+    if (!file.is_open()) {
+        cout << "Ошибка: Не удалось открыть файл data.txt" << endl;
+        return 1;
+    }
+
+    vector<double> original_x, original_y;
+
+    //  x 
+    double value;
+    for (int i = 0; i < 4; i++) {
+        file >> value;
+        x.push_back(value);
+        original_x.push_back(value);
+    }
+
+    // Читаем y значения  
+    for (int i = 0; i < 4; i++) {
+        file >> value;
+        y.push_back(value);
+        original_y.push_back(value);
+    }
+
+    file.close();
+
+    cout << "проверка: ";
+    for (int i = 0; i < x.size(); i++) {
+        cout << x[i] << " ";
+    }
+    cout << endl;
+
+    cout << "Y: ";
+    for (int i = 0; i < y.size(); i++) {
+        cout << y[i] << " ";
+    }
+    cout << endl << endl;
+
+    if (x.size() != y.size() || x.empty()) {
+        cout << "Ошибка: Неверный формат данных в файле" << endl;
+        return 1;
+    }
+
+    cout << "Считано " << x.size() << " точек:" << endl;
+    for (int i = 0; i < x.size(); i++) {
+        cout << "(" << x[i] << ", " << y[i] << ")" << endl;
+    }
+    cout << endl;
+
+    vector<double> original_y_copy = y;
+
+    vector<vector<double> > A;
+    buildVMatrix(x, A);
+
+    vector<double> coefficients;
+    if (!slauMG(A, y, coefficients)) {
+        return 1;
+    }
+    cout << "Коэффициенты :" << endl;
+    for (int i = 0; i < coefficients.size(); i++) {
+        cout << "a" << i << " = " << coefficients[i] << endl;
+    }
+    cout << endl;
+
+    printpolinom(coefficients);
+    cout << endl;
+
+    cout << "Проверка интерполяции:" << endl;
+    for (int i = 0; i < x.size(); i++) {
+        double value = calculatePolynomial(coefficients, x[i]);
+        cout << "P(" << x[i] << ") = " << value << " (должно быть " << original_y_copy[i] << ")" << endl;
+
+        // Дополнительная проверка точности
+        double error = fabs(value - original_y_copy[i]);
+        if (error > 0.0001) {
+            cout << "Ошибка: расхождение = " << error << endl;
+        }
+    }
+
+    return 0;
+}
