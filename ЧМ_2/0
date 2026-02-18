@@ -1,0 +1,115 @@
+#include <iostream>
+#include <vector>
+#include <cmath>
+#include <iomanip>
+using namespace std;
+
+int main() {
+    setlocale(LC_ALL, "Russian");
+
+    cout << "Степенной метод" << endl;
+
+    int n;
+    cout << "Введите размерность матрицы n: ";
+    cin >> n;
+
+    vector<vector<double>> A(n, vector<double>(n));
+
+    cout << "Введите элементы матрицы построчно:" << endl;
+    for (int i = 0; i < n; i++) {
+        cout << "Строка " << i + 1 << ": ";
+        for (int j = 0; j < n; j++) {
+            cin >> A[i][j];
+        }
+    }
+
+    cout << "\nВведенная матрица:" << endl;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            cout << setw(10) << A[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+    vector<double> x(n, 1.0);
+
+    double norm = 0.0;
+    for (int i = 0; i < n; i++) {
+        norm += x[i] * x[i];
+    }
+    norm = sqrt(norm);
+    for (int i = 0; i < n; i++) {
+        x[i] /= norm;
+    }
+
+    double lambda_old = 0.0;
+    double lambda_new = 0.0;
+    int maxIter = 1000;
+    double eps = 1e-10;
+
+
+    for (int iter = 0; iter < maxIter; iter++) {
+        vector<double> y(n, 0.0);
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                y[i] += A[i][j] * x[j];
+            }
+        }
+
+        double numerator = 0.0;
+        double denominator = 0.0;
+        for (int i = 0; i < n; i++) {
+            numerator += y[i] * x[i];
+            denominator += x[i] * x[i];
+        }
+        lambda_new = numerator / denominator;
+
+        norm = 0.0;
+        for (int i = 0; i < n; i++) {
+            norm += y[i] * y[i];
+        }
+        norm = sqrt(norm);
+        for (int i = 0; i < n; i++) {
+            x[i] = y[i] / norm;
+        }
+
+        if (abs(lambda_new - lambda_old) < eps) {
+            cout << "Метод сошелся за " << iter + 1 << " итераций" << endl;
+            break;
+        }
+
+        lambda_old = lambda_new;
+    }
+
+    cout << "Результат:" << endl;
+    cout << "Максимальное собственное значение:" << endl;
+    cout << "/| = " << setprecision(10) << fixed << lambda_new << endl;
+
+    cout << "\nСоответствующий собственный вектор:" << endl;
+    for (int i = 0; i < n; i++) {
+        cout << "x[" << i + 1 << "] = " << setprecision(8) << fixed << x[i] << endl;
+    }
+
+    cout << "Проверка (A*x - λ*x):" << endl;
+
+    vector<double> Ax(n, 0.0);
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            Ax[i] += A[i][j] * x[j];
+        }
+    }
+
+    double maxError = 0.0;
+    for (int i = 0; i < n; i++) {
+        double error = abs(Ax[i] - lambda_new * x[i]);
+        maxError = max(maxError, error);
+        cout << "res[" << i + 1 << "] = " << setprecision(8) << fixed << error << endl;
+    }
+
+    cout << "\nМаксимальная погрешность: " << maxError << endl;
+    if (maxError < 1e-6) {
+        cout << "✓ Результат хороший!" << endl;
+    }
+
+    return 0;
+}
