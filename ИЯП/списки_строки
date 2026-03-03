@@ -1,0 +1,29 @@
+# {[]()}     [(){}]  {[}] 
+# () < [] < {} < <>
+s = input()
+open_skob = "([{<"
+close_skob = ")]}>"
+prior = [1, 2, 3, 4]  # () - 1 (низший), [] - 2, {} - 3, <> - 4 (высший)
+t = []
+f = True
+for i in range(len(s)):
+    ch = s[i] #{  [  ]
+    if ch in open_skob:
+        idx = open_skob.index(ch)
+        if t and prior[open_skob.index(t[-1])] < prior[idx]:
+            f = False
+            break
+        t.append(ch)
+    elif ch in close_skob:
+        idx = close_skob.index(ch)
+        if not t:
+            f = False
+            break
+        if open_skob.index(t[-1]) != idx:
+            f = False
+            break
+        t.pop()
+if f and len(t) == 0:
+    print("Да")
+else:
+    print("Нет")
