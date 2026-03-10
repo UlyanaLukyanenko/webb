@@ -1,0 +1,25 @@
+"""
+3
+Katy C S
+Andrey C I
+Olga S I
+4
+C Katy
+S Andrey
+I Olga
+C Olga
+"""
+n = int(input())
+t = {}
+for i in range(n):
+    s = input().split()
+    one = s[0]
+    actions = set(s[1:])
+    t[one] = actions
+m = int(input())
+for i in range(m):
+    action, name = input().split()
+    if name in t and action in t[name]:
+        print("OK")
+    else:
+        print("Error")
