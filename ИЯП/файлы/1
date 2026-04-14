@@ -1,0 +1,52 @@
+''' 
+Дан файл, содержащий текст на русском языке. В предложениях некоторые из слов записаны подряд несколько раз
+ (предложение заканчивается точкой или восклицательным знаком). 
+ Получить в новом файле отредактированный текст, в котором удалены повторные вхождения слов в предложение. 
+ А также найти количество пар противоположных чисел среди компонентов исходного файла.
+'''
+f = open('input.txt', 'r', encoding='utf-8')
+text = f.read()
+f.close()
+raz = text.replace('!', '.').split('.')
+raz = [s for s in raz if s != '']
+t= []
+for s in raz:
+    words = s.split()
+    seen = []
+    new_words = []
+
+    for w in words:
+        cl = ''
+        for ch in w:
+            if ch.isalpha():
+                clean = cl + ch.lower()
+        if cl not in seen:
+            new_words.append(w)
+            seen.append(cl)
+    t.append(' '.join(new_words))
+rez_alph = '. '.join(t) + '.'
+f = open('output.txt', 'w', encoding='utf-8')
+f.write(rez_alph)
+f.close()
+
+words = text.split()
+num = []
+for w in words:
+    if w[0] == '-' or ('0' <= w[0] <= '9'):
+        clean_w = ''
+        for ch in w:
+            if ch == '-' or ('0' <= ch <= '9'):
+                clean_w = clean_w + ch
+        if clean_w != '':
+            num.append(int(clean_w))
+count = 0
+used = []
+for i in range(len(num)):
+    for j in range(i + 1, len(num)):
+        if num[i] == -num[j] and i not in used and j not in used:
+            count = count + 1
+            used.append(i)
+            used.append(j)
+            break
+print('Числа:', num)
+print('Количество пар:', count)
