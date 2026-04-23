@@ -1,0 +1,166 @@
+import random
+
+class Device:
+    def __init__(self, name, power_consumption, is_on=False, battery_level=100):
+        self.name = name
+        self.power_consumption = max(0, min(power_consumption, 1000))
+        self.is_on = is_on
+        self.battery_level = max(0, min(battery_level, 100))
+
+    @property
+    def power_consumption(self):
+        return self._power_consumption
+
+    @power_consumption.setter
+    def power_consumption(self, value):
+        self._power_consumption = max(0, min(value, 1000))
+
+    @property
+    def battery_level(self):
+        return self._battery_level
+
+    @battery_level.setter
+    def battery_level(self, value):
+        self._battery_level = max(0, min(value, 100))
+
+    def turn_on(self):
+        if self.battery_level > 0:
+            self.is_on = True
+
+    def turn_off(self):
+        self.is_on = False
+
+    def get_status(self):
+        return "Включено" if self.is_on else "Выключено"
+
+    def get_power_usage_per_hour(self):
+        return self.power_consumption if self.is_on else 0
+
+    def random_failure(self):
+        if random.random() < 0.15:
+            failure_type = random.choice(['turn_off', 'battery_drain', 'power_change'])
+            if failure_type == 'turn_off':
+                self.turn_off()
+            elif failure_type == 'battery_drain':
+                self.battery_level -= 20
+            else:
+                change = random.uniform(-0.1, 0.1)
+                self.power_consumption = self.power_consumption * (1 + change)
+
+    def connect(self, other_device):
+        if self.is_on and other_device.is_on:
+            summar_power = self.power_consumption + other_device.power_consumption
+            sr_battery = (self.battery_level + other_device.battery_level) // 2
+            new_device = Device(
+                f"{self.name}+{other_device.name}",
+                summar_power,
+                True,
+                sr_battery
+            )
+            return new_device
+        else:
+            return "Устройства не включены"
+
+    def __add__(self, num):
+        if isinstance(num, (int, float)):
+            new_power = min(self.power_consumption + num, 1000)
+            return Device(self.name, new_power, self.is_on, self.battery_level)
+        return NotImplemented
+
+    def __call__(self, hours):
+        power_per_hour = self.get_power_usage_per_hour()
+        total_consumption = power_per_hour * hours
+        return f"Device {self.name} will consume {total_consumption} Wh in {hours} hours"
+
+    def __lt__(self, other):
+        if not isinstance(other, Device):
+            return NotImplemented
+        return (-self.power_consumption, -self.battery_level, self.name) < (
+        -other.power_consumption, -other.battery_level, other.name)
+
+    def __str__(self):
+        return f"Device '{self.name}', power: {self.power_consumption}W, battery: {self.battery_level}%, is_on: {self.get_status()}"
+
+class SmartBulb(Device):
+    def __init__(self, name, power_consumption, brightness=50, color="white", is_on=False, battery_level=100):
+        super().__init__(name, power_consumption, is_on, battery_level)
+        self._nach_power = power_consumption
+        self.brightness = brightness
+        self.color = color
+
+    @property
+    def brightness(self):
+        return self._brightness
+
+    @brightness.setter
+    def brightness(self, value):
+        self._brightness = max(0, min(value, 100))
+        self.power_consumption = self._nach_power * (self._brightness / 100)
+
+    @property
+    def color(self):
+        return self._color
+
+    @color.setter
+    def color(self, value):
+        self._color = value
+
+    def set_brightness(self, level):
+        self.brightness = level
+
+    def set_color(self, color_name):
+        self.color = color_name
+
+    def random_failure(self):
+        if random.random() < 0.15:
+            failure_type = random.choice(['turn_off', 'battery_drain', 'power_change',
+                                          'brightness_change', 'color_reset'])
+            if failure_type == 'turn_off':
+                self.turn_off()
+            elif failure_type == 'battery_drain':
+                self.battery_level -= 20
+            elif failure_type == 'power_change':
+                change = random.uniform(-0.1, 0.1)
+                self._nach_power = max(0, self._nach_power * (1 + change))
+                self.brightness = self._brightness
+            elif failure_type == 'brightness_change':
+                change = random.uniform(-0.2, 0.2)
+                self.brightness += change * 100
+            else:
+                self.color = "white"
+
+    def __str__(self):
+        return (f"SmartBulb '{self.name}', power: {self.power_consumption:.1f}W, "
+                f"brightness: {self.brightness}%, color: {self.color}, "
+                f"battery: {self.battery_level}%, is_on: {self.get_status()}")
+
+laptop = Device("Ноутбук", 65, True, 85)
+phone = Device("Телефон", 5, False, 100)
+lamp = SmartBulb("LED Лампа", 10, 70, "orange", True, 90)
+
+print(laptop)
+print(phone)
+print(lamp)
+
+print(f"Текущий цвет: {lamp.color}")
+lamp.set_color("rgb")
+print(lamp.color)
+demo_lamp = SmartBulb("Демо лампа", 15, 60, "warm", True, 95)
+print("Исходное состояние:")
+print(demo_lamp)
+print("Меняем яркость на 30%:")
+demo_lamp.set_brightness(30)
+print(demo_lamp)
+
+print("Меняем цвет на 'rgb':")
+demo_lamp.set_color("rgb")
+print(demo_lamp)
+
+print("Меняем цвет на 'blue':")
+demo_lamp.set_color("blue")
+print(demo_lamp)
+
+print("Сбой:")
+for i in range(10):
+    demo_lamp.random_failure()
+    print(demo_lamp)
