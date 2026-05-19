@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÉLAN — Студия танца</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+    <div class="container header-flex">
+
+        <div class="logo">
+            <span class="logo-icon material-symbols-rounded">sprint</span> ÉLAN
+            <span class="logo-sub">| студия танца</span>
+        </div>
+
+        <nav>
+            <a href="#about">О студии</a>
+            <a href="#teachers">Преподаватели</a>
+            <a href="#directions">Направления</a>
+            <a href="#pricing">Абонементы</a>
+            <a href="#schedule">Расписание</a>
+            <a href="#contacts">Контакты</a>
+        </nav>
+
+    </div>
+</header>
+
+<main>
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>Танцуй свою историю</h1>
+
+        <p class="hero-subtitle">
+            Студия танца ÉLAN — грация, страсть и вдохновение в каждом движении
+        </p>
+
+        <button class="btn-primary"
+                onclick="document.getElementById('schedule').scrollIntoView({behavior:'smooth'})">
+            <span class="material-symbols-rounded btn-icon">calendar_month</span>
+            Онлайн-расписание
+        </button>
+
+    </div>
+
+</section>
+
+<section id="about">
+
+    <div class="container">
+
+        <h2>О студии</h2>
+
+        <div class="about-content">
+
+            <div class="about-image">
+
+                <img
+                        src='https://i.pinimg.com/originals/f9/03/87/f903877938f36cacd8603bed727a5db1.jpg?nii=t'
+                        alt="Танцевальный зал">
+
+            </div>
+
+            <div class="about-text">
+
+                <p>
+                    ÉLAN — пространство, где танец становится языком души.
+                    Мы создаем атмосферу свободы, вдохновения и красоты движения.
+                </p>
+
+                <p>
+                    Уютные залы, профессиональные преподаватели и направления
+                    для любого уровня подготовки.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section id="teachers">
+
+    <div class="container">
+
+        <h2>Преподаватели</h2>
+
+        <p class="section-subtitle">
+            Профессионалы с большим сердцем и любовью к танцу
+        </p>
+
+        <div class="teachers-grid" id="teachersGrid"></div>
+
+    </div>
+
+</section>
+
+<section id="directions">
+
+    <div class="container">
+
+        <h2>Направления</h2>
+
+        <p class="section-subtitle">
+            Выбери стиль, который откликается тебе
+        </p>
+
+        <div class="directions-grid" id="directionsGrid"></div>
+
+    </div>
+
+</section>
+
+<section id="pricing">
+
+    <div class="container">
+
+        <h2>Абонементы</h2>
+
+        <p class="section-subtitle">
+            Выбери удобный формат занятий
+        </p>
+
+        <div class="pricing-grid">
+
+            <div class="pricing-card">
+
+                <div class="pricing-badge">Пробное</div>
+
+                <div class="pricing-icon"><span class="material-symbols-rounded">diamond</span></div>
+
+                <h3>Пробное</h3>
+
+                <div class="pricing-price">500 ₽</div>
+
+                <ul class="pricing-features">
+                    <li><span class="material-symbols-rounded li-icon">check_circle</span> Любое направление</li>
+                    <li><span class="material-symbols-rounded li-icon">check_circle</span> 1 занятие</li>
+                    <li><span class="material-symbols-rounded li-icon">check_circle</span> Знакомство со студией</li>
+                </ul>
+
+                <button class="pricing-btn">Записаться</button>
+
+            </div>
+
+            <div class="pricing-card popular">
+
+                <div class="pricing-badge">Популярный</div>
+
+                <div class="pricing-icon"><span class="material-symbols-rounded">local_fire_department</span></div>
+
+                <h3>4 занятия</h3>
+
+                <div class="pricing-price">2 800 ₽</div>
+
+                <div class="pricing-per-month">
+                    ~700 ₽ / занятие
+                </div>
+
+                <ul class="pricing-features">
+                    <li><span class="material-symbols-rounded li-icon">check_circle</span> Любое направление</li>
+                    <li><span class="material-symbols-rounded li-icon">check_circle</span> 4 занятия</li>
+                    <li><span class="material-symbols-rounded li-icon">check_circle</span> Заморозка</li>
+                </ul>
+
+                <button class="pricing-btn">Выбрать</button>
+
+            </div>
+
+            <div class="pricing-card">
+
+                <div class="pricing-badge">Выгода</div>
+
+                <div class="pricing-icon"><span class="material-symbols-rounded">dark_mode</span></div>
+
+                <h3>8 занятий</h3>
+
+                <div class="pricing-price">5 200 ₽</div>
+
+                <div class="pricing-per-month">
+                    ~650 ₽ / занятие
+                </div>
+
+                <ul class="pricing-features">
+                    <li><span class="material-symbols-rounded li-icon">check_circle</span> Любое направление</li>
+                    <li><span class="material-symbols-rounded li-icon">check_circle</span> 8 занятий</li>
+                    <li><span class="material-symbols-rounded li-icon">check_circle</span> Скидка на мерч</li>
+                </ul>
+
+                <button class="pricing-btn">Выбрать</button>
+
+            </div>
+
+            <div class="pricing-card">
+
+                <div class="pricing-badge">Максимум</div>
+
+                <div class="pricing-icon"><span class="material-symbols-rounded">workspace_premium</span></div>
+
+                <h3>12 занятий</h3>
+
+                <div class="pricing-price">7 200 ₽</div>
+
+                <div class="pricing-per-month">
+                    ~600 ₽ / занятие
+                </div>
+
+                <ul class="pricing-features">
+                    <li><span class="material-symbols-rounded li-icon">check_circle</span> Все направления</li>
+                    <li><span class="material-symbols-rounded li-icon">check_circle</span> 12 занятий</li>
+                    <li><span class="material-symbols-rounded li-icon">check_circle</span> Подарок</li>
+                </ul>
+
+                <button class="pricing-btn">Выбрать</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section id="schedule">
+
+    <div class="container">
+
+        <h2>Онлайн-расписание</h2>
+
+        <p class="section-subtitle">
+            Выберите день недели и занятие
+        </p>
+
+        <div class="schedule-filters" id="filterButtons">
+
+            <button class="filter-btn active" data-day="all">Все</button>
+            <button class="filter-btn" data-day="monday">ПН</button>
+            <button class="filter-btn" data-day="tuesday">ВТ</button>
+            <button class="filter-btn" data-day="wednesday">СР</button>
+            <button class="filter-btn" data-day="thursday">ЧТ</button>
+            <button class="filter-btn" data-day="friday">ПТ</button>
+            <button class="filter-btn" data-day="saturday">СБ</button>
+            <button class="filter-btn" data-day="sunday">ВС</button>
+
+        </div>
+
+        <div id="scheduleContainer"></div>
+
+    </div>
+
+</section>
+
+</main>
+<!-- Модальное окно записи -->
+<div id="bookingModal" class="modal">
+    <div class="modal-content">
+        <span class="modal-close">&times;</span>
+
+        <h3>Запись на занятие</h3>
+
+        <p id="modalLessonInfo"></p>
+
+        <input type="text" id="userName" placeholder="Ваше имя">
+        <input type="tel" id="userPhone" placeholder="Телефон">
+        <input type="email" id="userEmail" placeholder="Email">
+
+        <textarea id="userComment" rows="4" placeholder="Комментарий"></textarea>
+
+        <div class="modal-buttons">
+            <button class="btn-primary" id="submitBooking">
+                Записаться
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Лист ожидания -->
+<div id="waitingModal" class="modal">
+    <div class="modal-content">
+        <span class="modal-close">&times;</span>
+
+        <h3>Лист ожидания</h3>
+
+        <p id="waitingLessonInfo"></p>
+
+        <input type="text" id="waitingName" placeholder="Ваше имя">
+        <input type="tel" id="waitingPhone" placeholder="Телефон">
+        <input type="email" id="waitingEmail" placeholder="Email">
+
+        <div class="modal-buttons">
+            <button class="btn-primary" id="submitWaiting">
+                Отправить
+            </button>
+        </div>
+    </div>
+</div>
+<script src="js/schedule.js"></script>
+<script src="js/modal.js"></script>
+<script src="js/waiting.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
