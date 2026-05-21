@@ -23,7 +23,12 @@
             <span class="logo-sub">| студия танца</span>
         </div>
 
-        <nav>
+        <!-- БУРГЕР -->
+        <button class="burger" id="burgerBtn">
+            <span class="material-symbols-rounded">menu</span>
+        </button>
+
+        <nav id="mobileNav">
             <a href="#about">О студии</a>
             <a href="#teachers">Преподаватели</a>
             <a href="#directions">Направления</a>
@@ -141,7 +146,9 @@
 
                 <div class="pricing-badge">Пробное</div>
 
-                <div class="pricing-icon"><span class="material-symbols-rounded">diamond</span></div>
+                <div class="pricing-icon">
+                    <span class="material-symbols-rounded">diamond</span>
+                </div>
 
                 <h3>Пробное</h3>
 
@@ -161,7 +168,9 @@
 
                 <div class="pricing-badge">Популярный</div>
 
-                <div class="pricing-icon"><span class="material-symbols-rounded">local_fire_department</span></div>
+                <div class="pricing-icon">
+                    <span class="material-symbols-rounded">local_fire_department</span>
+                </div>
 
                 <h3>4 занятия</h3>
 
@@ -185,7 +194,9 @@
 
                 <div class="pricing-badge">Выгода</div>
 
-                <div class="pricing-icon"><span class="material-symbols-rounded">dark_mode</span></div>
+                <div class="pricing-icon">
+                    <span class="material-symbols-rounded">dark_mode</span>
+                </div>
 
                 <h3>8 занятий</h3>
 
@@ -209,7 +220,9 @@
 
                 <div class="pricing-badge">Максимум</div>
 
-                <div class="pricing-icon"><span class="material-symbols-rounded">workspace_premium</span></div>
+                <div class="pricing-icon">
+                    <span class="material-symbols-rounded">workspace_premium</span>
+                </div>
 
                 <h3>12 занятий</h3>
 
@@ -264,10 +277,34 @@
 
 </section>
 
+<!-- КОНТАКТЫ -->
+<section id="contacts">
+
+    <div class="container">
+
+        <h2>Контакты</h2>
+
+        <p class="section-subtitle">
+            Мы всегда рады новым ученикам
+        </p>
+
+        <div style="margin-top:40px; line-height:2;">
+            <p>📍 Москва, ул. Танцевальная, 21</p>
+            <p>📞 +7 (999) 123-45-67</p>
+            <p>✉️ elanstudio@mail.ru</p>
+            <p>🕒 Ежедневно с 10:00 до 22:00</p>
+        </div>
+
+    </div>
+
+</section>
+
 </main>
-<!-- Модальное окно записи -->
+
+<!-- МОДАЛКА ЗАПИСИ -->
 <div id="bookingModal" class="modal">
     <div class="modal-content">
+
         <span class="modal-close">&times;</span>
 
         <h3>Запись на занятие</h3>
@@ -285,12 +322,14 @@
                 Записаться
             </button>
         </div>
+
     </div>
 </div>
 
-<!-- Лист ожидания -->
+<!-- МОДАЛКА ЛИСТА ОЖИДАНИЯ -->
 <div id="waitingModal" class="modal">
     <div class="modal-content">
+
         <span class="modal-close">&times;</span>
 
         <h3>Лист ожидания</h3>
@@ -303,15 +342,32 @@
 
         <div class="modal-buttons">
             <button class="btn-primary" id="submitWaiting">
-                Отправить
+               Отправить
             </button>
         </div>
+
     </div>
 </div>
+
+<script>
+    const burgerBtn = document.getElementById("burgerBtn");
+    const mobileNav = document.getElementById("mobileNav");
+
+    burgerBtn.addEventListener("click", () => {
+        mobileNav.classList.toggle("nav-open");
+    });
+
+    document.querySelectorAll("nav a").forEach(link => {
+        link.addEventListener("click", () => {
+            mobileNav.classList.remove("nav-open");
+        });
+    });
+</script>
+
 <script src="js/schedule.js"></script>
+<script src="js/app.js"></script>
 <script src="js/modal.js"></script>
 <script src="js/waiting.js"></script>
-<script src="js/app.js"></script>
 
 </body>
 </html>
