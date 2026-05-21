@@ -238,7 +238,6 @@ const directionsData = [
     }
 ];
 
-// Вспомогательные функции
 function getAvailableSeats(lesson) {
     return lesson.totalSeats - lesson.bookedSeats;
 }
@@ -247,21 +246,18 @@ function hasAvailableSeats(lesson) {
     return getAvailableSeats(lesson) > 0;
 }
 
-// Функция для получения класса статуса мест
 function getSeatsClass(available, total) {
     if (available === 0) return "full";
     if (available <= 2) return "low";
     return "available";
 }
 
-// Функция для получения текста статуса мест (Material Symbols вместо эмодзи)
 function getSeatsText(available, total) {
     if (available === 0) return '<span class="material-symbols-rounded seats-icon seats-full">block</span> Мест нет';
     if (available <= 2) return `<span class="material-symbols-rounded seats-icon seats-low">warning</span> Осталось ${available} места`;
     return `<span class="material-symbols-rounded seats-icon seats-ok">check_circle</span> Свободно: ${available}/${total}`;
 }
 
-// Экспорт
 window.scheduleData = scheduleData;
 window.teachersData = teachersData;
 window.directionsData = directionsData;
