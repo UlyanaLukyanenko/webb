@@ -1,4 +1,4 @@
-/* ===== RESET & BASE ===== */
+/*  RESET & BASE  */
 * {
     margin: 0;
     padding: 0;
@@ -19,7 +19,7 @@ body {
     padding: 0 20px;
 }
 
-/* ===== MATERIAL SYMBOLS ===== */
+/*  MATERIAL SYMBOLS  */
 .material-symbols-rounded {
     font-variation-settings:
         'FILL' 0,
@@ -29,7 +29,7 @@ body {
     vertical-align: middle;
 }
 
-/* ===== HEADER ===== */
+/*HEADER */
 header {
     position: fixed;
     top: 0;
@@ -104,7 +104,7 @@ nav a:hover::after {
     width: 100%;
 }
 
-/* ===== HERO ===== */
+/*  HERO  */
 .hero {
     position: relative;
     min-height: 100vh;
@@ -124,7 +124,7 @@ nav a:hover::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Полупрозрачный тёмный оверлей для контраста */
+    background: rgba(0, 0, 0, 0.5); 
     z-index: 1;
 }
 
@@ -133,28 +133,27 @@ nav a:hover::after {
     z-index: 2;
     max-width: 900px;
     padding: 0 20px;
-    color: #ffffff; /* Светлый цвет текста */
+    color: #ffffff; 
 }
 .hero h1 {
     font-family: 'Cormorant Garamond', serif;
     font-size: 4rem;
     font-weight: 600;
-    color: #ffffff; /* Светлый текст */
+    color: #ffffff; 
     margin-bottom: 20px;
     line-height: 1.1;
-    text-shadow: 0 2px 6px rgba(0,0,0,0.7); /* Тень для лучшей читаемости */
+    text-shadow: 0 2px 6px rgba(0,0,0,0.7); 
 }
 
 .hero-subtitle {
     font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.85); /* Светлый, но чуть менее яркий цвет */
+    color: rgba(255, 255, 255, 0.85); 
     font-weight: 300;
     margin-bottom: 40px;
     line-height: 1.7;
     text-shadow: 0 1px 4px rgba(0,0,0,0.6);
 }
 
-/* ===== BUTTONS ===== */
 .btn-primary {
     display: inline-flex;
     align-items: center;
@@ -184,7 +183,7 @@ nav a:hover::after {
     margin-right: 2px;
 }
 
-/* ===== SECTIONS ===== */
+/* SECTIONS */
 section {
     padding: 100px 0;
 }
@@ -215,7 +214,7 @@ h2::after {
     margin-bottom: 50px;
 }
 
-/* ===== ABOUT ===== */
+/* ABOUT*/
 .about-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -239,7 +238,7 @@ h2::after {
     font-weight: 300;
 }
 
-/* ===== TEACHERS ===== */
+/* TEACHERS  */
 .teachers-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -307,7 +306,7 @@ h2::after {
     font-weight: 300;
 }
 
-/* ===== DIRECTIONS ===== */
+/* DIRECTIONS */
 .directions-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -365,7 +364,7 @@ h2::after {
     font-weight: 300;
 }
 
-/* ===== PRICING ===== */
+/* PRICING  */
 .pricing-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -508,7 +507,7 @@ h2::after {
     background: #A04E4E;
 }
 
-/* ===== SCHEDULE ===== */
+/* SCHEDULE  */
 .schedule-filters {
     display: flex;
     justify-content: center;
@@ -740,7 +739,7 @@ h2::after {
     grid-column: 1 / -1;
 }
 
-/* ===== MODAL ===== */
+/* MODAL  */
 .modal {
     display: none;
     position: fixed;
@@ -849,7 +848,7 @@ h2::after {
     font-size: 0.9rem;
 }
 
-/* ===== FOOTER / CONTACTS ===== */
+/*  FOOTER / CONTACTS  */
 #contacts {
     background: #2A2A2A;
     color: white;
@@ -865,7 +864,7 @@ h2::after {
     background: #B85C5C;
 }
 
-/* ===== RESPONSIVE ===== */
+/*  RESPONSIVE  */
 @media (max-width: 768px) {
     nav {
         display: none;
@@ -916,7 +915,7 @@ h2::after {
         padding: 60px 0;
     }
 }
-/* ===== HERO BUTTONS ===== */
+/*  HERO BUTTONS  */
 
 .hero-buttons {
     display: flex;
@@ -935,7 +934,7 @@ h2::after {
     color: #B85C5C;
 }
 
-/* ===== CONTACTS ===== */
+/*  CONTACTS */
 
 .contacts-text {
     font-size: 1rem;
@@ -943,7 +942,7 @@ h2::after {
     color: rgba(255,255,255,0.9);
 }
 
-/* ===== BURGER ===== */
+/*  BURGER  */
 
 .burger {
     display: none;
@@ -957,7 +956,7 @@ h2::after {
     color: #2A2A2A;
 }
 
-/* ===== MOBILE ===== */
+/*  MOBILE  */
 
 @media (max-width: 768px) {
 
