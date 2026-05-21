@@ -916,6 +916,76 @@ h2::after {
         padding: 60px 0;
     }
 }
+/* ===== HERO BUTTONS ===== */
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.secondary-btn {
+    background: transparent;
+    border: 1.5px solid white;
+}
+
+.secondary-btn:hover {
+    background: white;
+    color: #B85C5C;
+}
+
+/* ===== CONTACTS ===== */
+
+.contacts-text {
+    font-size: 1rem;
+    margin-bottom: 14px;
+    color: rgba(255,255,255,0.9);
+}
+
+/* ===== BURGER ===== */
+
+.burger {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.burger .material-symbols-rounded {
+    font-size: 2rem;
+    color: #2A2A2A;
+}
+
+/* ===== MOBILE ===== */
+
+@media (max-width: 768px) {
+
+    .burger {
+        display: block;
+    }
+
+    nav {
+        position: absolute;
+        top: 80px;
+        right: 20px;
+        background: white;
+        flex-direction: column;
+        padding: 20px;
+        border-radius: 16px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        display: none;
+    }
+
+    nav.active {
+        display: flex;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+}
 
 @media (max-width: 480px) {
     .hero h1 {
