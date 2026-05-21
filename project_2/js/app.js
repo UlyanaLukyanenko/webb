@@ -1,4 +1,4 @@
-// ===== РЕНДЕРИНГ ПРЕПОДАВАТЕЛЕЙ =====
+
 function renderTeachers() {
     const grid = document.getElementById("teachersGrid");
     if (!grid) return;
@@ -15,7 +15,6 @@ function renderTeachers() {
     `).join("");
 }
 
-// ===== РЕНДЕРИНГ НАПРАВЛЕНИЙ =====
 function renderDirections() {
     const grid = document.getElementById("directionsGrid");
     if (!grid) return;
@@ -31,7 +30,6 @@ function renderDirections() {
     `).join("");
 }
 
-// ===== РЕНДЕРИНГ РАСПИСАНИЯ =====
 function renderSchedule(filter = "all") {
     const container = document.getElementById("scheduleContainer");
     if (!container) return;
@@ -60,36 +58,42 @@ function renderSchedule(filter = "all") {
                     </div>
                     <div class="schedule-day-badge">${lesson.dayShort}</div>
                 </div>
+
                 <h3 class="schedule-name">${lesson.name}</h3>
+
                 <div class="schedule-meta">
                     <span class="schedule-teacher">
                         <span class="material-symbols-rounded meta-icon">person</span>
                         ${lesson.teacher}
                     </span>
+
                     <span class="schedule-level">
                         <span class="material-symbols-rounded meta-icon">signal_cellular_alt</span>
                         ${lesson.level}
                     </span>
                 </div>
+
                 <div class="schedule-seats ${seatsClass}">
                     ${seatsText}
                 </div>
+
                 <button class="schedule-btn ${isFull ? 'schedule-btn--waiting' : ''}"
                         onclick="${isFull
                             ? `window.waitingModalManager.open(scheduleData.find(l => l.id === ${lesson.id}))`
                             : `window.bookingModalManager.open(scheduleData.find(l => l.id === ${lesson.id}))`
                         }">
+
                     ${isFull
                         ? '<span class="material-symbols-rounded btn-icon">hourglass_top</span> В лист ожидания'
                         : '<span class="material-symbols-rounded btn-icon">edit_calendar</span> Записаться'
                     }
+
                 </button>
             </div>
         `;
     }).join("");
 }
 
-// ===== ФИЛЬТРЫ РАСПИСАНИЯ =====
 function initFilters() {
     const filterContainer = document.getElementById("filterButtons");
     if (!filterContainer) return;
@@ -101,15 +105,50 @@ function initFilters() {
         filterContainer.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
 
-        const day = btn.dataset.day;
-        renderSchedule(day);
+        renderSchedule(btn.dataset.day);
     });
 }
 
-// ===== ИНИЦИАЛИЗАЦИЯ =====
+// ===== БУРГЕР =====
+function initBurger() {
+    const burgerBtn = document.getElementById("burgerBtn");
+    const nav = document.getElementById("mobileNav");
+
+    if (!burgerBtn || !nav) return;
+
+    burgerBtn.addEventListener("click", () => {
+        nav.classList.toggle("active");
+    });
+
+    nav.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+            nav.classList.remove("active");
+        });
+    });
+}
+function initValidation() {
+
+    document.addEventListener("input", (e) => {
+
+        if (e.target.type === "tel") {
+            e.target.value = e.target.value.replace(/[^\d+\-\(\)\s]/g, "");
+        }
+
+        if (e.target.type === "text") {
+            e.target.value = e.target.value.replace(/[0-9]/g, "");
+        }
+
+    });
+
+}
 document.addEventListener("DOMContentLoaded", () => {
+
     renderTeachers();
     renderDirections();
     renderSchedule();
+
     initFilters();
+    initBurger();
+    initValidation();
+
 });
