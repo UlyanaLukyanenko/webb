@@ -173,7 +173,6 @@
         <p>Управление записями и листом ожидания студии ÉLAN</p>
         
         <div class="stats" id="statsContainer">
-            <!-- статистика загрузится через JS -->
         </div>
         
         <h2>📋 Активные записи</h2>
@@ -219,7 +218,6 @@
     </div>
     
     <script>
-        // Загрузка статистики
         function loadStats() {
             const bookings = JSON.parse(localStorage.getItem("elan_dance_bookings") || "[]");
             const waiting = JSON.parse(localStorage.getItem("elan_dance_waiting") || "[]");
@@ -241,7 +239,6 @@
             `;
         }
         
-        // Загрузка записей
         function loadBookings() {
             const bookings = JSON.parse(localStorage.getItem("elan_dance_bookings") || "[]");
             const tbody = document.getElementById("bookingsBody");
@@ -264,7 +261,6 @@
             `).join("");
         }
         
-        // Загрузка листа ожидания
         function loadWaiting() {
             const waiting = JSON.parse(localStorage.getItem("elan_dance_waiting") || "[]");
             const tbody = document.getElementById("waitingBody");
@@ -286,7 +282,6 @@
             `).join("");
         }
         
-        // Очистка записей
         document.getElementById("clearBookingsBtn")?.addEventListener("click", () => {
             if (confirm("Вы уверены, что хотите очистить все записи? Это действие нельзя отменить.")) {
                 localStorage.removeItem("elan_dance_bookings");
@@ -305,7 +300,6 @@
             }
         });
         
-        // Инициализация
         loadStats();
         loadBookings();
         loadWaiting();
